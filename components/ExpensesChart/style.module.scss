@@ -1,0 +1,270 @@
+@import "styles/utils";
+
+.expensesChart {
+  max-width: 343px;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 16px;
+
+  @include media(">desktop") {
+    max-width: 540px;
+    grid-gap: 24px;
+  }
+
+  .balanceBox {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 4px;
+    color: #FFFFFF;
+    background: #EC755D;
+    border-radius: 10px;
+    padding: 20px 24px 22px 20px;
+
+    @include media(">desktop") {
+      grid-gap: 8px;
+      border-radius: 20px;
+      padding: 27px 39px 25px 32px;
+    }
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      background: #382314;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      content: "";
+
+      @include media(">desktop") {
+        right: 39px;
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      right: 44px;
+      width: 38px;
+      height: 38px;
+      border: 2px solid #FFFFFF;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      content: "";
+
+      @include media(">desktop") {
+        right: 63px;
+        width: 46px;
+        height: 46px;
+      }
+    }
+
+    .label {
+      font-size: 15px;
+      line-height: 20px;
+
+      @include media(">desktop") {
+        font-size: 18px;
+        line-height: 23px;
+      }
+    }
+
+    .balance {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 31px;
+      color: #FFFBF6;
+
+      @include media(">desktop") {
+        font-size: 32px;
+        line-height: 42px;
+      }
+    }
+  }
+
+  .expensesChartBox {
+    background: #FFFBF6;
+    border-radius: 10px;
+    padding: 24px 20px;
+
+    @include media(">desktop") {
+      border-radius: 20px;
+      padding: 32px 39.5px 40px 40px;
+    }
+
+    .title {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 31px;
+      color: #382314;
+      margin-bottom: 52px;
+
+      @include media(">desktop") {
+        font-size: 32px;
+        line-height: 42px;
+        margin-bottom: 66px;
+      }
+    }
+
+    .chart {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      text-align: center;
+      grid-gap: 12px;
+
+      @include media(">desktop") {
+        grid-gap: 17.91px;
+      }
+
+      @keyframes fadeInUp {
+        0% {
+          top: 0;
+          opacity: 0;
+        }
+
+        100% {
+          top: -8px;
+          opacity: 1;
+        }
+      }
+
+      li {
+        position: relative;
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        grid-gap: 11px;
+        font-size: 12px;
+        line-height: 16px;
+        color: #92857A;
+        cursor: pointer;
+
+        @include media(">desktop") {
+          grid-gap: 8px;
+          font-size: 15px;
+          line-height: 20px;
+        }
+
+        &::before {
+          position: relative;
+          top: 0;
+          left: 0;
+          width: 100%;
+          background: red;
+          height: calc(var(--height) * 150px);
+          background: var(--barColor);
+          border-radius: 3px;
+          content: "";
+          transition: background 0.3s;
+        }
+
+        &::after {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          font-weight: 700;
+          font-size: 18px;
+          line-height: 23px;
+          color: #FFFBF6;
+          background: #382314;
+          border-radius: 5px;
+          transform: translateX(-50%) translateY(-100%);
+          padding: 8px 8px 9px;
+          z-index: 1;
+          opacity: 0;
+          content: "$" attr(data-amount);
+        }
+
+        &:hover {
+          &::before {
+            background: var(--barHoverColor);
+          }
+
+          &::after {
+            animation: fadeInUp 0.3s both;
+          }
+        }
+      }
+    }
+
+    .splitter {
+      width: 100%;
+      height: 2px;
+      background: #F8E9DD;
+      margin: 24px 0;
+      border: none;
+      border-radius: 1px;
+
+      @include media(">desktop") {
+        margin: 32px 0;
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+
+    .leftSide {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 4px;
+
+      @include media(">desktop") {
+        grid-gap: 1px;
+      }
+    }
+
+    .rightSide {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+
+      @include media(">desktop") {
+        padding-bottom: 9px;
+      }
+    }
+
+    .label {
+      font-size: 15px;
+      line-height: 20px;
+      color: #92857A;
+
+      @include media(">desktop") {
+        font-size: 18px;
+        line-height: 23px;
+      }
+    }
+
+    .total {
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 39px;
+      color: #382314;
+
+      @include media(">desktop") {
+        font-size: 48px;
+        line-height: 62px;
+      }
+    }
+
+    .variation {
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 20px;
+      color: #382314;
+
+      @include media(">desktop") {
+        font-size: 18px;
+        line-height: 23px;
+      }
+    }
+  }
+}
